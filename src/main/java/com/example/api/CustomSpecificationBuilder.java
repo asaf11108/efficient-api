@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 public class CustomSpecificationBuilder {
 
-    static <T> Specification<T> build(Map<String, Map<FilterOperation, String>> params) {
+    public static <T> Specification<T> build(Map<String, Map<FilterOperation, String>> params) {
         Specification<T> result = Specification.where(null);
 
         for (Map.Entry<String,Map<FilterOperation, String>> entry : params.entrySet()) {
