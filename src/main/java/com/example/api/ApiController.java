@@ -2,6 +2,7 @@ package com.example.api;
 
 import java.util.Map;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ public class ApiController {
     public String getApi(HttpServletRequest request) throws Exception {
         Map<String, Object> obj = Parser.parse(request.getQueryString(), new Options());
         QueryDto queryDto = QueryMapper.objToQueryDto(obj);
+        Specification spec = CustomSpecificationBuilder.build(queryDto.getFilters());
         return "";
     }
 }

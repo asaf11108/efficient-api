@@ -3,11 +3,11 @@ package com.example.api;
 public enum FilterOperation {
     EQUALITY, NEGATION, GREATER_THAN, LESS_THAN, LIKE, STARTS_WITH, ENDS_WITH, CONTAINS, IN;
 
-    public static final String[] SIMPLE_OPERATION_SET = { ":", "!", ">", "<", "~", "i" };
+    public static final String[] SIMPLE_OPERATION_SET = { "eq", "!", ">", "<", "~", "i" };
 
     public static FilterOperation getSimpleOperation(String input) {
         switch (input) {
-        case ":":
+        case "eq":
             return EQUALITY;
         case "!":
             return NEGATION;
