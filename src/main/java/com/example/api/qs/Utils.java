@@ -9,6 +9,9 @@ public class Utils {
     private static final char[] HEX_TABLE = "0123456789ABCDEF".toCharArray();
 
     public static boolean hasOwnProperty(Map<String, Object> object, String key) {
+        if (object == null || key == null) {
+            return false;
+        }
         return object.containsKey(key);
     }
 

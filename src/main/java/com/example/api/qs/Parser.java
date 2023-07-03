@@ -144,7 +144,7 @@ public class Parser {
         if (parent != null && !parent.isEmpty()) {
             // If we aren't using plain objects, optionally prefix keys
             // that would overwrite object prototype properties
-            if (!options.plainObjects && false/* && Object.containsKey(parent)*/) {
+            if (!options.plainObjects && false) {
                 if (!options.allowPrototypes) {
                     return null;
                 }
@@ -167,9 +167,9 @@ public class Parser {
         }
 
         // If there's a remainder, just add whatever is left
-        if (segmentMatcher.find()) {
-            keys.add("[" + key.substring(segmentMatcher.start()) + "]");
-        }
+        // if (segmentMatcher.find()) {
+        //     keys.add("[" + key.substring(segmentMatcher.start()) + "]");
+        // }
 
         return parseObject(keys, val, options);
     }

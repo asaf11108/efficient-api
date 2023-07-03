@@ -5,19 +5,19 @@ public enum FilterOperation {
 
     public static final String[] SIMPLE_OPERATION_SET = { ":", "!", ">", "<", "~", "i" };
 
-    public static FilterOperation getSimpleOperation(char input) {
+    public static FilterOperation getSimpleOperation(String input) {
         switch (input) {
-        case ':':
+        case ":":
             return EQUALITY;
-        case '!':
+        case "!":
             return NEGATION;
-        case '>':
+        case ">":
             return GREATER_THAN;
-        case '<':
+        case "<":
             return LESS_THAN;
-        case '~':
+        case "~":
             return LIKE;
-        case 'i':
+        case "i":
             return IN;
         default:
             return null;

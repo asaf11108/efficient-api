@@ -78,21 +78,6 @@
 			<version>6.2.5.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.15.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.10.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -109,42 +94,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			
-			<plugin>
-				<groupId>org.orienteer.jnpm</groupId>
-				<artifactId>jnpm-maven-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>install</goal>
-						</goals>
-						<configuration>
-							<packages>
-								<package>qs@~6.5.3</package>
-							</packages>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-                <source>1.8</source> <!-- depending on your project -->
-                <target>1.8</target> <!-- depending on your project -->
-                <annotationProcessorPaths>
-                    <path>
-                        <groupId>org.mapstruct</groupId>
-                        <artifactId>mapstruct-processor</artifactId>
-                        <version>${org.mapstruct.version}</version>
-                    </path>
-                    <!-- other annotation processors -->
-                </annotationProcessorPaths>
-            </configuration>
-        </plugin>
 		</plugins>
 	</build>
 
