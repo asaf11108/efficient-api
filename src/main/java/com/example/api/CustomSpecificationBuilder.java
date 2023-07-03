@@ -69,7 +69,7 @@ public class CustomSpecificationBuilder {
         } else if (Boolean.class.isAssignableFrom(fieldType)) {
             return Boolean.valueOf(value);
         }
-        return null;
+        return value;
     }
 
     private static <T> Object castToRequiredType(Class<T> fieldType, List<String> value) {
