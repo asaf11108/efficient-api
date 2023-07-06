@@ -30,7 +30,7 @@ public class ApiController {
     public List<Person> getApi(HttpServletRequest request) throws Exception {
         Map<String, Object> obj = Parser.parse(request.getQueryString(), new Options());
         QueryDto queryDto = QueryMapper.objToQueryDto(obj);
-        Specification spec = CustomSpecificationBuilder.build(queryDto.getFilters());
-        return personRepository.findAll();
+        Specification<Person> spec = CustomSpecificationBuilder.build(queryDto.getFilters());
+        return personRepository.findAll(spec);
     }
 }
