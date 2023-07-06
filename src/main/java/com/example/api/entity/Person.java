@@ -1,4 +1,4 @@
-package com.example.api;
+package com.example.api.entity;
 
 
 import jakarta.persistence.Column;

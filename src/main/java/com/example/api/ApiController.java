@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.api.entity.Person;
 import com.example.api.qs.Parser;
 import com.example.api.qs.Parser.Options;
 import com.example.api.repository.PersonRepository;
