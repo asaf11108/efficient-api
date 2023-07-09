@@ -17,9 +17,9 @@ public enum FilterOperation {
             return LESS_THAN;
         case "$like":
             return LIKE;
-        case "$startWith":
+        case "$startsWith":
             return STARTS_WITH;
-        case "$startWithi":
+        case "$startsWithi":
             return STARTS_WITH_I;
         case "$endsWith":
             return ENDS_WITH;
