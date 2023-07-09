@@ -1,23 +1,31 @@
 package com.example.api;
 
 public enum FilterOperation {
-    EQUALITY, NEGATION, GREATER_THAN, LESS_THAN, LIKE, STARTS_WITH, ENDS_WITH, CONTAINS, IN;
+    EQUALITY, NEGATION, GREATER_THAN, LESS_THAN, LIKE, STARTS_WITH, STARTS_WITH_I, ENDS_WITH, CONTAINS, IN;
 
-    public static final String[] SIMPLE_OPERATION_SET = { "eq", "!", ">", "<", "~", "i" };
+    public static final String[] SIMPLE_OPERATION_SET = { "$eq", "$ne", "$gt", "$lt", "$like", "$startsWith", "$startsWithi", "$endsWith", "$contains", "$in" };
 
     public static FilterOperation getSimpleOperation(String input) {
         switch (input) {
-        case "eq":
+        case "$eq":
             return EQUALITY;
-        case "!":
+        case "$ne":
             return NEGATION;
-        case ">":
+        case "$gt":
             return GREATER_THAN;
-        case "<":
+        case "$lt":
             return LESS_THAN;
-        case "~":
+        case "$like":
             return LIKE;
-        case "i":
+        case "$startWith":
+            return STARTS_WITH;
+        case "$startWithi":
+            return STARTS_WITH_I;
+        case "$endsWith":
+            return ENDS_WITH;
+        case "$contains":
+            return CONTAINS;
+        case "$in":
             return IN;
         default:
             return null;

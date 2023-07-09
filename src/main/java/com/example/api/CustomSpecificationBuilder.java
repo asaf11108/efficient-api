@@ -40,10 +40,13 @@ public class CustomSpecificationBuilder {
                     (Number) castToRequiredType(root.get(k).getJavaType(), entry.getValue()));
             case LIKE:
                 return (root, query, criteriaBuilder) ->
-                    criteriaBuilder.like(root.get(k), entry.getValue().toString());
+                    criteriaBuilder.like(root.get(k), entry.getValue());
             case STARTS_WITH:
                 return (root, query, criteriaBuilder) ->
                     criteriaBuilder.like(root.get(k), entry.getValue()+"%");
+            case STARTS_WITH_I:
+                return (root, query, criteriaBuilder) ->
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get(k)), entry.getValue().toLowerCase()+"%");
             case ENDS_WITH:
                 return (root, query, criteriaBuilder) ->
                     criteriaBuilder.like(root.get(k), "%"+entry.getValue());
@@ -66,10 +69,12 @@ public class CustomSpecificationBuilder {
             return Integer.valueOf(value);
         // }else if(Enum.class.isAssignableFrom(fieldType)){
         //     return Enum.valueOf(fieldType, value);
-        } else if (Boolean.class.isAssignableFrom(fieldType)) {
+        } else if (fieldType.isAssignableFrom(Boolean.class)) {
             return Boolean.valueOf(value);
+        } else if (fieldType.isAssignableFrom(String.class)) {
+            return String.valueOf(value);
         }
-        return value;
+        return null;
     }
 
     private static <T> Object castToRequiredType(Class<T> fieldType, List<String> value) {
