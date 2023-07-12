@@ -1,20 +1,35 @@
-package com.example.api;
+package com.example.api.dto;
 
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
-public class QueryMapper {
- 
-    public static QueryDto objToQueryDto(Map<String, Object> obj) {
-        QueryDto queryDto = QueryDto.builder().build();
+import com.example.api.FilterOperation;
+import com.example.api.Pagination;
+import com.example.api.qs.Parser;
+import com.example.api.qs.Parser.Options;
+
+import lombok.Data;
+
+@Data
+public class QueryDto {
+    Map<String, Map<FilterOperation, String>> filters;
+    List<String> sort;
+    Pagination pagination;
+
+    public QueryDto(String queryString) throws Exception {
+        Map<String, Object> obj = Parser.parse(queryString, new Options());
+        objToQueryDto(obj);
+    }
+
+    public void objToQueryDto(Map<String, Object> obj) {
         Object filtersObj = obj.get("filters");
         if (filtersObj != null) {
-            queryDto.setFilters(convertFilters(filtersObj));
+            this.filters = convertFilters(filtersObj);
         }
-        return queryDto;
     }
     
-    private static Map<String, Map<FilterOperation, String>> convertFilters(Object obj) {
+    private Map<String, Map<FilterOperation, String>> convertFilters(Object obj) {
         Map<String, Object> fieldsObj = (LinkedHashMap<String, Object>) obj;
         Map<String, Map<FilterOperation, String>> fields = new LinkedHashMap<String, Map<FilterOperation, String>>();
         for (Map.Entry<String, Object> field : fieldsObj.entrySet()) {
