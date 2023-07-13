@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 @Service
@@ -20,9 +21,9 @@ public class ApiServiceImpl implements ApiService {
     private final PersonRepository personRepository;
     
     @Override
-    public List<Person> getApi(QueryDto queryDto) {
+    public List<Person> getApi(QueryDto queryDto, Pageable pageable) {
         Specification<Person> spec = CustomSpecificationBuilder.build(queryDto.getFilters());
-        return personRepository.findAll(spec);
+        return personRepository.findAll(spec, pageable);
     }
     
 }
