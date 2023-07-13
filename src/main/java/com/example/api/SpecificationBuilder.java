@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.springframework.data.jpa.domain.Specification;
 
-public class CustomSpecificationBuilder {
+public class SpecificationBuilder {
 
     public static <T> Specification<T> build(Map<String, Map<FilterOperation, String>> params) {
         Specification<T> result = Specification.where(null);

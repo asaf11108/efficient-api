@@ -2,7 +2,7 @@ package com.example.api.services;
 
 import org.springframework.stereotype.Service;
 
-import com.example.api.CustomSpecificationBuilder;
+import com.example.api.SpecificationBuilder;
 import com.example.api.dto.QueryDto;
 import com.example.api.entities.Person;
 import com.example.api.repositories.PersonRepository;
@@ -22,7 +22,7 @@ public class ApiServiceImpl implements ApiService {
     
     @Override
     public List<Person> getApi(QueryDto queryDto, Pageable pageable) {
-        Specification<Person> spec = CustomSpecificationBuilder.build(queryDto.getFilters());
+        Specification<Person> spec = SpecificationBuilder.build(queryDto.getFilters());
         return personRepository.findAll(spec, pageable);
     }
     
