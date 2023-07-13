@@ -11,6 +11,9 @@ public class SpecificationBuilder {
 
     public static <T> Specification<T> build(Map<String, Map<FilterOperation, String>> params) {
         Specification<T> result = Specification.where(null);
+        if (params == null) {
+            return result;
+        }
 
         for (Map.Entry<String,Map<FilterOperation, String>> entry : params.entrySet()) {
             result = Specification.where(result).and(buildSpec(entry.getKey(), entry.getValue()));
