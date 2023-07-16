@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 
 import com.example.api.FilterOperation;
-import com.example.api.Pagination;
 import com.example.api.qs.Parser;
 import com.example.api.qs.Parser.Options;
 
@@ -14,11 +13,18 @@ import lombok.Data;
 @Data
 public class QueryDto {
     Map<String, Map<FilterOperation, String>> filters;
-    List<String> sort;
-    Pagination pagination;
 
     public QueryDto(String queryString) throws Exception {
         Map<String, Object> obj = Parser.parse(queryString, new Options());
+        objToQueryDto(obj);
+    }
+
+    public QueryDto(String queryString, Map<String, Map<String, Map<FilterOperation, String>>> queryDto) throws Exception {
+        Map<String, Object> obj = Parser.parse(queryString, new Options());
+        objToQueryDto(obj);
+    }
+
+    public QueryDto(Map<String, Object> obj) {
         objToQueryDto(obj);
     }
 
