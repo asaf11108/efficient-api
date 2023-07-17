@@ -1,6 +1,5 @@
 package com.example.api.dto;
 
-import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
@@ -19,13 +18,16 @@ public class QueryDto {
         objToQueryDto(obj);
     }
 
-    public QueryDto(String queryString, Map<String, Map<String, Map<FilterOperation, String>>> queryDto) throws Exception {
-        Map<String, Object> obj = Parser.parse(queryString, new Options());
-        objToQueryDto(obj);
+    public QueryDto(String queryString, QueryDto defaultQueryDto) throws Exception {
+        this(queryString);
+        if (this.filters != null)
+            this.filters.forEach((k, v) -> defaultQueryDto.filters.merge(k, v, (k1, v1) -> v1));
+        else
+            this.filters = defaultQueryDto.filters;
     }
 
-    public QueryDto(Map<String, Object> obj) {
-        objToQueryDto(obj);
+    public QueryDto(Map<String, Map<FilterOperation, String>> filters) {
+        this.filters = filters;
     }
 
     public void objToQueryDto(Map<String, Object> obj) {

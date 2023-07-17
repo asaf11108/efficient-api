@@ -26,7 +26,7 @@ public class ApiController {
     // @Context UriInfo uriInfo
     // uriInfo.getRequestUri().getQuery()
     public List<Person> getApi(HttpServletRequest request, Pageable pageable) throws Exception {
-        QueryDto queryDto = new QueryDto(request.getQueryString());
+        QueryDto queryDto = new QueryDto(request.getQueryString(), ApiControllerDefault.queryDto);
         return apiService.getApi(queryDto, pageable);
     }
 }
