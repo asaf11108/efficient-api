@@ -21,12 +21,12 @@ import lombok.RequiredArgsConstructor;
 public class ApiController {
     private final ApiService apiService;
 
-    @GetMapping
+    @GetMapping("people")
     // Other option to get raw query params
     // @Context UriInfo uriInfo
     // uriInfo.getRequestUri().getQuery()
     public List<Person> getApi(HttpServletRequest request, Pageable pageable) throws Exception {
-        QueryDto queryDto = new QueryDto(request.getQueryString(), ApiControllerDefault.queryDto);
+        QueryDto queryDto = new QueryDto(request.getQueryString());
         return apiService.getApi(queryDto, pageable);
     }
 }
