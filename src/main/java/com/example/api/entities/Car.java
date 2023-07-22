@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column
     private String make;
@@ -25,11 +25,11 @@ public class Car {
     private String model;
 
     @Column
-    private int year;
+    private Integer year;
 
     @Column
     private String color;
 
     @Column
-    private int price;
+    private Integer price;
 }

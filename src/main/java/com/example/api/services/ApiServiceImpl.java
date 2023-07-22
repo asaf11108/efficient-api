@@ -6,6 +6,7 @@ import com.example.api.SpecificationBuilder;
 import com.example.api.dto.QueryDto;
 import com.example.api.entities.Car;
 import com.example.api.entities.Person;
+import com.example.api.mappers.CarMapper;
 import com.example.api.repositories.CarRepository;
 import com.example.api.repositories.CityRepository;
 import com.example.api.repositories.PersonRepository;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -36,10 +38,7 @@ public class ApiServiceImpl implements ApiService {
     public Car patchCar(int id, Car newCar) {
         return carRepository.findById(id)
         .map(car -> {
-            if (newCar.getModel() != null)
-                car.setModel(newCar.getModel());
-            if (newCar.getMake() != null)
-                car.setMake(newCar.getMake());
+            CarMapper.INSTANCE.updateCarFromDto(car, newCar);
             return carRepository.save(car);
         }).orElseThrow();
     }
