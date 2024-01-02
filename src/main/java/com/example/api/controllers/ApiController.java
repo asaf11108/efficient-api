@@ -36,4 +36,11 @@ public class ApiController {
     public Car patchCar(@PathVariable("id") int id, @RequestBody Car car) {
         return apiService.patchCar(id, car);
     }
+
+    @GetMapping("multi-ids/{ids}")
+    public Integer[] multiIds(@PathVariable("ids") Integer[] ids) {
+        return ids;
+    }
+
+    
 }
