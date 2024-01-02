@@ -42,5 +42,8 @@ public class ApiController {
         return ids;
     }
 
-    
+    @GetMapping("composite-keys/{key1}:{key2}")
+    public String[] compositeKeys(@PathVariable("key1") String key1, @PathVariable("key2") String key2) {
+        return new String[]{key1, key2};
+    }
 }
