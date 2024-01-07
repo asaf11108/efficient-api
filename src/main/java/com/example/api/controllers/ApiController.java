@@ -1,13 +1,13 @@
 package com.example.api.controllers;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,8 +37,8 @@ public class ApiController {
         return apiService.patchCar(id, car);
     }
 
-    @GetMapping("multi-ids/{ids}")
-    public Integer[] multiIds(@PathVariable("ids") Integer[] ids) {
+    @PutMapping("bulk/{ids}")
+    public Integer[] bulk(@PathVariable("ids") Integer[] ids) {
         return ids;
     }
 
