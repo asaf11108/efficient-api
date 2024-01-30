@@ -37,7 +37,7 @@ public class ApiController {
         return apiService.patchCar(id, car);
     }
 
-    @PutMapping("bulk/{ids}")
+    @PutMapping("users/{ids}")
     public Integer[] bulk(@PathVariable("ids") Integer[] ids) {
         return ids;
     }
